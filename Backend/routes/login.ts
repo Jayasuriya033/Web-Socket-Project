@@ -11,7 +11,8 @@ dotenv.config();
 
 app.use(express.json());
 
-const JWT_SECRET:any = process.env.JWT_SECRET||"12345";
+const JWT_SECRET:any = process.env.JWT_SECRE;
+
 
 
 
@@ -34,7 +35,7 @@ app.post('/', async (req: Request, res: Response):Promise<any>   => {
 
     const jwttoken = jwt.sign({ username: user.username }, JWT_SECRET);
     const token= await bcrypt.hash(jwttoken, 10);
-    // console.log(token);
+    // console.log(token)
     
 
     // console.log('Hitting');
@@ -43,7 +44,5 @@ app.post('/', async (req: Request, res: Response):Promise<any>   => {
   } catch (error) {
     console.error('Login Err : ', error);
     return res.status(500).json({ message: 'server error',error });
-  }
-});
-
-export default app;
+  }}
+)

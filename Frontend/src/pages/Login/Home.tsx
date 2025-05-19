@@ -9,8 +9,10 @@ const Home = () => {
     navigate('/login'); 
   };
   const handleChat = () => {
+    if(localStorage.getItem("token")){
     const username = localStorage.getItem("username");
-    navigate(`/chatroom?username=${username}`); 
+    navigate(`/chatroom?username=${username}`); }
+    else navigate('/login')
   };
 
   return (
