@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = "postgresql://postgres:suriya@05@localhost:5432/refine_project/public"
+  provider = "mysql"
+  url      = "mysql://root:suriya@05@localhost:3306/chat-app"
 }
 
 model Employees {
@@ -13,7 +13,6 @@ model Employees {
   name        String
   email       String   @unique
   role        String?
-  tech        String[] @db.Text
 }
 model User {
   id           Int       @id @default(autoincrement())
@@ -22,7 +21,7 @@ model User {
   mobileNumber String    @unique @default("1234567890")
   password     String
   rooms        Room[]    @relation("UserRooms")
-  roleId       Int        @default()
+  roleId       Int        @default(2)
   role         Role      @relation(fields: [roleId], references: [id]) 
 }
 

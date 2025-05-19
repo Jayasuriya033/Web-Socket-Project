@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post('/', async (req: Request, res: Response): Promise<any> => {
   try {
-    const { employee_ID, name, email, role, tech } = req.body;
+    const { employee_ID, name, email, role } = req.body;
 
     const userExist = await prisma.employees.findFirst({
       where: {
@@ -35,7 +35,6 @@ app.post('/', async (req: Request, res: Response): Promise<any> => {
         name,
         email,
         role,
-        tech, 
       },
     });
     console.log("---");
@@ -51,19 +50,3 @@ app.post('/', async (req: Request, res: Response): Promise<any> => {
 export default app;
 
 
-// {
-//   "employee_ID": "Taff3002",
-//   "name": "Giri",
-//   "email": "giri@gmail.com",
-//   "role": "Front End Developer",
-//   "tech": ["JavaScript","TypeScript","React","Angular","Next.js","Refine.dev"]
-// }
-
-
-// {
-//   "employee_ID": "Taff3003",
-//   "name": "Kishre",
-//   "email": "kishre@gmail.com",
-//   "role": "MERN Stack Developer",
-//   "tech": ["JavaScript","TypeScript","React","Angular","Next.js","Refine.dev","Node.Js", "Express.js", "Postgres Sql", "MYSQL", "Prisma ORM"]
-// }

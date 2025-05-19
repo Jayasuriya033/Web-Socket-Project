@@ -11,7 +11,7 @@ dotenv.config();
 
 app.use(express.json());
 
-const JWT_SECRET:any = process.env.JWT_SECRET;
+const JWT_SECRET:any = process.env.JWT_SECRET||"12345";
 
 
 
@@ -41,8 +41,8 @@ app.post('/', async (req: Request, res: Response):Promise<any>   => {
 
     return res.json({ message: "Login Successful ", login : true , user : user,  token });
   } catch (error) {
-    // console.error('Login Err : ', error);
-    return res.status(500).json({ message: 'server error' });
+    console.error('Login Err : ', error);
+    return res.status(500).json({ message: 'server error',error });
   }
 });
 

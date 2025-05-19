@@ -10,7 +10,8 @@ import router from "./routes/routes";
 import { handleRoomEvents } from "./routes/roomCreate";
 import { uploadFile, handleFileUpload } from "./routes/fileUpload";
 import { handleMediaEvents } from "./routes/streamEvent"; 
-
+import AdminAccount from './seeds';
+import roleCreate from './role'
 dotenv.config();
 const prisma = new PrismaClient();
 const app = express();
@@ -21,7 +22,8 @@ app.use("/uploads", express.static(uploadsDir));
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
-
+AdminAccount();
+roleCreate();
 app.post("/api/upload", uploadFile, handleFileUpload);
 
 const httpServer = createServer(app);
