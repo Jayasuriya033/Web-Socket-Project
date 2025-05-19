@@ -11,7 +11,7 @@ dotenv.config();
 
 app.use(express.json());
 
-const JWT_SECRET:any = process.env.JWT_SECRET;
+const JWT_SECRET:any = process.env.JWT_SECRET || "123456";
 
 
 
@@ -34,7 +34,7 @@ app.post('/', async (req: Request, res: Response):Promise<any>   => {
 
     const jwttoken = jwt.sign({ username: user.username }, JWT_SECRET);
     const token= await bcrypt.hash(jwttoken, 10);
-    // console.log(token);
+    // console.log(token)
     
 
     // console.log('Hitting');
@@ -42,7 +42,7 @@ app.post('/', async (req: Request, res: Response):Promise<any>   => {
     return res.json({ message: "Login Successful ", login : true , user : user,  token });
   } catch (error) {
     // console.error('Login Err : ', error);
-    return res.status(500).json({ message: 'server error' });
+    return res.status(500).json({ message: 'server error while login' });
   }
 });
 
